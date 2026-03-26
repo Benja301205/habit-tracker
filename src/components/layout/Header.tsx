@@ -24,11 +24,25 @@ export default function Header() {
   const greeting = getGreeting()
 
   return (
-    <header className="px-5 pt-4 pb-3 safe-top">
+    <header className="relative px-5 pt-4 pb-3 safe-top overflow-hidden">
+      {/* Decorative gradient orb */}
+      <div
+        className="absolute -top-16 -right-16 w-48 h-48 rounded-full pointer-events-none opacity-40 blur-3xl"
+        style={{
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%)',
+        }}
+      />
+
       <motion.p
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-xs font-medium text-indigo-400 tracking-wide mb-0.5"
+        className="text-xs font-semibold tracking-widest uppercase mb-0.5 text-gradient-indigo"
+        style={{
+          background: 'linear-gradient(135deg, #818cf8 0%, #6366f1 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}
       >
         {greeting}
       </motion.p>
@@ -36,7 +50,7 @@ export default function Header() {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.05 }}
-        className="text-2xl font-bold text-white capitalize"
+        className="text-2xl font-bold text-white capitalize font-display"
       >
         {fecha}
       </motion.h1>
@@ -46,7 +60,7 @@ export default function Header() {
         transition={{ delay: 0.15 }}
         className="text-sm text-slate-500 mt-1 italic"
       >
-        {frase}
+        &ldquo;{frase}&rdquo;
       </motion.p>
     </header>
   )

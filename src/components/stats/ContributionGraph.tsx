@@ -57,16 +57,30 @@ export default memo(function ContributionGraph({
 
   const today = new Date()
 
+  // Count stats for the month
+  const completedDays = useMemo(() => {
+    return days.filter((day) => {
+      const dateStr = format(day, 'yyyy-MM-dd')
+      if (type === 'positive') return checkInSet.has(dateStr)
+      return !relapseSet.has(dateStr) && day <= today
+    }).length
+  }, [days, type, checkInSet, relapseSet, today])
+
   return (
     <div>
-      <p className="text-sm font-medium text-slate-400 mb-3 capitalize">
-        {monthLabel}
-      </p>
-      <div className="grid grid-cols-7 gap-1.5">
+      <div className="flex items-center justify-between mb-3">
+        <p className="text-sm font-medium text-slate-400 capitalize">
+          {monthLabel}
+        </p>
+        <span className="text-xs text-slate-500">
+          {completedDays} {type === 'positive' ? 'completados' : 'días limpios'}
+        </span>
+      </div>
+      <div className="grid grid-cols-7 gap-[5px]">
         {['L', 'M', 'X', 'J', 'V', 'S', 'D'].map((d) => (
           <div
             key={d}
-            className="text-[10px] text-slate-600 text-center font-medium"
+            className="text-[10px] text-slate-600 text-center font-medium pb-1"
           >
             {d}
           </div>
@@ -79,33 +93,45 @@ export default memo(function ContributionGraph({
           const isToday = isSameDay(day, today)
           const habitStart = new Date(startDate)
 
-          let bg = 'bg-slate-800/50'
+          let cellStyle: React.CSSProperties = {}
+          let cellClass = 'aspect-square rounded-[5px] contrib-cell'
 
           if (day < habitStart) {
-            bg = 'bg-slate-900/30'
+            cellClass += ' bg-slate-900/20'
           } else if (type === 'positive') {
             if (checkInSet.has(dateStr)) {
-              bg = ''
+              cellStyle = {
+                backgroundColor: color,
+                boxShadow: `0 0 6px ${color}30`,
+              }
+            } else {
+              cellClass += ' bg-slate-800/40'
             }
           } else {
             if (relapseSet.has(dateStr)) {
-              bg = 'bg-red-500/60'
+              cellStyle = {
+                backgroundColor: 'rgba(239, 68, 68, 0.6)',
+                boxShadow: '0 0 6px rgba(239, 68, 68, 0.2)',
+              }
             } else if (day <= today) {
-              bg = ''
+              cellStyle = {
+                backgroundColor: `${color}80`,
+                boxShadow: `0 0 4px ${color}20`,
+              }
+            } else {
+              cellClass += ' bg-slate-800/40'
             }
+          }
+
+          if (isToday) {
+            cellClass += ' ring-[1.5px] ring-white/50 ring-offset-1 ring-offset-slate-950'
           }
 
           return (
             <div
               key={dateStr}
-              className={`aspect-square rounded-md ${bg} ${
-                isToday ? 'ring-1 ring-white/40' : ''
-              }`}
-              style={
-                bg === ''
-                  ? { backgroundColor: `${color}66` }
-                  : undefined
-              }
+              className={cellClass}
+              style={cellStyle}
             />
           )
         })}

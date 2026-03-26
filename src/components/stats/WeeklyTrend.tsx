@@ -57,7 +57,7 @@ export default memo(function WeeklyTrend({ habit, checkIns }: WeeklyTrendProps) 
   const trendIcon = trend === 'up' ? '↗' : trend === 'down' ? '↘' : '→'
 
   return (
-    <div className="glass rounded-2xl p-4 border border-slate-700/30">
+    <div className="glass-card rounded-2xl p-4 border border-slate-700/20">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <span className="text-lg">{habit.emoji}</span>

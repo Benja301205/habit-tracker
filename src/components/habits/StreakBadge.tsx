@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { StreakFlame } from '../ui/Illustrations'
 
 interface StreakBadgeProps {
   count: number
@@ -28,8 +29,8 @@ export default function StreakBadge({ count, unit, size = 'sm' }: StreakBadgePro
   }
 
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/20 text-amber-300 animate-pulse-glow">
-      🔥 {count} {unitLabel}
+    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/20 text-amber-300 animate-pulse-glow">
+      <StreakFlame size={12} /> {count} {unitLabel}
     </span>
   )
 }

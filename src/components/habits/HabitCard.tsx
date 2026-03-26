@@ -5,6 +5,7 @@ import { calculateAbstinenceStreak } from '../../lib/streak-calculator'
 import CheckInButton from './CheckInButton'
 import StreakBadge from './StreakBadge'
 import { getTodayArgentina, getWeekStart } from '../../lib/streak-calculator'
+import { StreakFlame } from '../ui/Illustrations'
 
 interface HabitCardProps {
   habit: Habit
@@ -136,8 +137,8 @@ export default memo(function HabitCard({
         <div className="flex-1 min-w-0">
           <span className="font-semibold text-sm text-white">{habit.name}</span>
           <div className="flex items-center gap-1.5 mt-0.5">
-            <span className="text-lg font-bold font-display text-gradient-amber animate-pulse-glow">
-              🔥 {currentStreak}
+            <span className="inline-flex items-center gap-1 text-lg font-bold font-display text-gradient-amber animate-pulse-glow">
+              <StreakFlame size={18} /> {currentStreak}
             </span>
             <span className="text-xs text-slate-400">
               {currentStreak === 1 ? 'día' : 'días'}

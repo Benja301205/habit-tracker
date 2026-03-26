@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, AlertTriangle, ChevronLeft, ChevronRight, Flame, Trophy } from 'lucide-react'
+import { ArrowLeft, AlertTriangle, ChevronLeft, ChevronRight, Trophy } from 'lucide-react'
+import { FlameIcon } from '../ui/Illustrations'
 import type { Habit, CheckIn, Relapse } from '../../types'
 import { calculateAbstinenceStreak } from '../../lib/streak-calculator'
 import ContributionGraph from '../stats/ContributionGraph'
@@ -96,7 +97,7 @@ export default function HabitDetail({
         <div className="grid grid-cols-2 gap-3 mb-6">
           <div className="glass-card rounded-2xl p-4 border border-slate-700/20 text-center">
             <div className="flex items-center justify-center gap-1.5 mb-2">
-              <Flame size={14} className="text-amber-400" />
+              <FlameIcon size={16} />
               <p className="text-xs text-slate-500">Racha actual</p>
             </div>
             <StreakBadge

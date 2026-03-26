@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Plus, Download, Sparkles } from 'lucide-react'
+import { SproutIllustration, CelebrationIllustration } from '../components/ui/Illustrations'
 import type { Habit, CheckIn, Relapse } from '../types'
 import { getTodayArgentina } from '../lib/streak-calculator'
 import Header from '../components/layout/Header'
@@ -84,13 +85,7 @@ export default function Today({
             animate={{ opacity: 1, y: 0 }}
             className="text-center py-16"
           >
-            <motion.div
-              className="text-5xl mb-4 inline-block"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              🌱
-            </motion.div>
+            <SproutIllustration size={72} className="mb-2 inline-block" />
             <h3 className="text-lg font-bold text-white font-display mb-2">
               Empezá tu viaje
             </h3>
@@ -160,13 +155,7 @@ export default function Today({
             animate={{ opacity: 1, scale: 1 }}
             className="text-center py-6"
           >
-            <motion.div
-              className="text-4xl mb-2 inline-block"
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              🎉
-            </motion.div>
+            <CelebrationIllustration size={56} className="mb-1 inline-block" />
             <p className="text-lg font-bold font-display text-gradient mb-1">
               ¡Día completo!
             </p>

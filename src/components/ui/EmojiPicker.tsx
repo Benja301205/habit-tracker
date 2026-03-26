@@ -17,35 +17,50 @@ export default function EmojiPicker({ value, onChange }: EmojiPickerProps) {
 
   return (
     <div className="relative">
-      <button
+      <motion.button
+        whileTap={{ scale: 0.92 }}
         onClick={() => setOpen(!open)}
-        className="w-14 h-14 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl"
+        className="w-14 h-14 rounded-2xl glass-card border border-slate-700/30 flex items-center justify-center text-2xl active:bg-slate-700/30 transition-colors"
       >
         {value}
-      </button>
+      </motion.button>
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="absolute top-16 left-0 z-50 glass border border-slate-700/50 rounded-2xl p-3 grid grid-cols-6 gap-2 w-[280px]"
-          >
-            {COMMON_EMOJIS.map((emoji) => (
-              <button
-                key={emoji}
-                onClick={() => {
-                  onChange(emoji)
-                  setOpen(false)
-                }}
-                className={`w-10 h-10 rounded-lg flex items-center justify-center text-xl hover:bg-slate-700/50 ${
-                  value === emoji ? 'bg-slate-700' : ''
-                }`}
-              >
-                {emoji}
-              </button>
-            ))}
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40"
+              onClick={() => setOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: -4 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -4 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              className="absolute top-16 left-0 z-50 glass-elevated border border-slate-700/30 rounded-2xl p-3 grid grid-cols-6 gap-1.5 w-[280px] shadow-xl"
+            >
+              {COMMON_EMOJIS.map((emoji) => (
+                <motion.button
+                  key={emoji}
+                  whileTap={{ scale: 0.85 }}
+                  onClick={() => {
+                    onChange(emoji)
+                    setOpen(false)
+                  }}
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center text-xl transition-colors ${
+                    value === emoji
+                      ? 'bg-indigo-500/20 ring-1 ring-indigo-500/40'
+                      : 'active:bg-slate-700/50'
+                  }`}
+                >
+                  {emoji}
+                </motion.button>
+              ))}
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>

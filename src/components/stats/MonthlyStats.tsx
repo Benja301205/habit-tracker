@@ -100,7 +100,7 @@ export default memo(function MonthlyStats({
         return (
           <div
             key={habit.id}
-            className="glass rounded-2xl p-4 border border-slate-700/30"
+            className="glass-card rounded-2xl p-4 border border-slate-700/20"
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">{habit.emoji}</span>
@@ -112,7 +112,7 @@ export default memo(function MonthlyStats({
               </span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+              <div className="flex-1 h-2.5 bg-slate-800/60 rounded-full overflow-hidden">
                 <motion.div
                   className="h-full rounded-full"
                   style={{ backgroundColor: habit.color }}
@@ -150,7 +150,7 @@ export default memo(function MonthlyStats({
         return (
           <div
             key={habit.id}
-            className="glass rounded-2xl p-4 border border-slate-700/30"
+            className="glass-card rounded-2xl p-4 border border-slate-700/20"
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">{habit.emoji}</span>
@@ -160,8 +160,8 @@ export default memo(function MonthlyStats({
             </div>
             <div className="grid grid-cols-3 gap-3 mb-3">
               <div className="text-center">
-                <p className="text-2xl font-bold text-amber-400 font-display">
-                  🔥 {currentStreak}
+                <p className="text-2xl font-bold font-display text-gradient-amber">
+                  {currentStreak}
                 </p>
                 <p className="text-[10px] text-slate-500">Racha actual</p>
               </div>
@@ -186,7 +186,7 @@ export default memo(function MonthlyStats({
                 </span>
                 <span className="text-[10px] text-slate-500">{cleanPct}%</span>
               </div>
-              <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-2 bg-slate-800/60 rounded-full overflow-hidden">
                 <motion.div
                   className="h-full rounded-full bg-emerald-500"
                   initial={{ width: 0 }}
@@ -201,7 +201,7 @@ export default memo(function MonthlyStats({
 
       {/* General overview */}
       {(overallStats.bestHabit || overallStats.hardestDay) && (
-        <div className="glass rounded-2xl p-4 border border-slate-700/30">
+        <div className="glass-card rounded-2xl p-4 border border-slate-700/20">
           <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
             Resumen general
           </h4>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useAuth } from '../lib/auth-context'
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react'
+import { LogoFlame } from '../components/ui/Illustrations'
 
 export default function Login() {
   const { signIn, signUp } = useAuth()
@@ -61,14 +62,7 @@ export default function Login() {
         transition={{ duration: 0.6 }}
         className="text-center mb-8 relative"
       >
-        <motion.div
-          className="text-6xl mb-4 inline-block"
-          animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ filter: 'drop-shadow(0 0 20px rgba(251, 191, 36, 0.3))' }}
-        >
-          🔥
-        </motion.div>
+        <LogoFlame size={72} className="mb-2 inline-block" />
         <h1 className="text-3xl font-extrabold text-white mb-2 font-display">
           Habit Tracker
         </h1>
